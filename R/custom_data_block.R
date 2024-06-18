@@ -12,10 +12,10 @@ new_custom_data_block<- function(...){
         df = adsl,
         vars = c("SEX", "AGE", "RACE"),
         lbl_vars = c("Sex", "Age, years", "Race")
-      ) |> rtables::as_result_df()
+      )
     }),
     fields = list(),
-    class = c("transform_block")
+    class = c("custom_block", "rtables_block", "transform_block")
   )
 }
 
