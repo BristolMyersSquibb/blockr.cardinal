@@ -1,7 +1,18 @@
 #' @method server_output rtables_block
 #' @export
 server_output.rtables_block <- function (x, result, output) {
-  shiny::renderUI(rtables::as_html(result()))
+  shiny::renderUI({
+    print(result())
+    shiny::tabsetPanel(
+      shiny::tabPanel(
+        "HTML",
+        rtables::as_html(result())
+      ),
+      shiny::tabPanel(
+        "RTF"
+      )
+    )
+  })
 }
 
 #' @method uiOutputBlock rtables_block

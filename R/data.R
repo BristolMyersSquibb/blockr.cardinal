@@ -4,6 +4,7 @@ new_random_cdisc_data_block <- function(...){
   blockr::new_block(
     name = "Random CDISC data block",
     expr = quote({
+      library(random.cdisc.data)
       x <- as.environment("package:random.cdisc.data")
       get(.(dataset), envir = x)
     }),

@@ -6,14 +6,12 @@ new_falcon02_block <- function(data, columns = character(),...){
   
   blockr::new_block(
     name = "boxplot scatter data",
-    expr = quote({
-      adsl <- random.cdisc.data::cadsl
+    expr = quote(
       falcon::make_table_02(
-        df = adsl,
         vars = c("SEX", "AGE", "RACE"),
         lbl_vars = c("Sex", "Age, years", "Race")
       )
-    }),
+    ),
     fields = list(
       columns = new_select_field(
         first_col, 
