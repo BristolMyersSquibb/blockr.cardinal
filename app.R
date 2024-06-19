@@ -1,14 +1,15 @@
 devtools::document()
 pkgload::load_all()
 library(shiny)
-library(blockr)
+# library(blockr)
 # library(blockr.bms)
 library(blockr.pharmaverseadam)
 
 stack1 <- new_stack(
-  # adam_block,
-  new_custom_data_block
-  # my_block
+  adam_block,
+  # arrange_block,
+  custom_block
+  # my_bloc
 )
 serve_stack(stack1)
 # ui <- fluidPage(
