@@ -2,7 +2,7 @@
 #' @export
 server_output.rtables_block <- function (x, result, output) {
   shiny::renderUI({
-    print(result())
+    # print(result())
     shiny::tabsetPanel(
       shiny::tabPanel(
         "HTML",
