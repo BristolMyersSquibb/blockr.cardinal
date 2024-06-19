@@ -1,26 +1,32 @@
 #' @import blockr falcon rtables
-new_custom_block<- function(columns = character(),...){
+new_falcon02_block <- function(data, columns = character(),...){
   # browser()
+  first_col <- function(data) colnames(data)[1]
   all_cols <- function(data) colnames(data)
+  
   blockr::new_block(
     name = "boxplot scatter data",
     expr = quote({
       adsl <- random.cdisc.data::cadsl
-      data <- falcon::make_table_02(
+      falcon::make_table_02(
         df = adsl,
         vars = c("SEX", "AGE", "RACE"),
         lbl_vars = c("Sex", "Age, years", "Race")
       )
-      data
     }),
-    fields = list(columns = new_select_field(columns, all_cols,
-                                             # multiple = TRUE,
-                                             title = "Columns"
-    )),
-    class = c("custom_block", "rtables_block", "transform_block")
+    fields = list(
+      columns = new_select_field(
+        first_col, 
+        all_cols,
+        title = "Columns"
+      )
+    ),
+    ...,
+    class = c("custom_block", "rtables_block")
   )
 }
+
 #' @export
-custom_block <- function(data, ...){
-  blockr::initialize_block(new_custom_block(data, ...), data)
+falcon02_block <- function(data, ...){
+  blockr::initialize_block(new_falcon02_block(data, ...), data)
 }

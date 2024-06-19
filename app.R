@@ -1,14 +1,14 @@
 devtools::document()
 pkgload::load_all()
 library(shiny)
-# library(blockr)
+library(blockr)
 # library(blockr.bms)
 library(blockr.pharmaverseadam)
 
 stack1 <- new_stack(
-  adam_block,
+  random_cdsic_data_block,
   # arrange_block,
-  custom_block
+  falcon02_block
   # my_bloc
 )
 serve_stack(stack1)
