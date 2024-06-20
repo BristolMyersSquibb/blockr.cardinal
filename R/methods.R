@@ -6,7 +6,7 @@ server_output.rtables_block <- function (x, result, output) {
     shiny::tabsetPanel(
       shiny::tabPanel(
         "HTML",
-        rtables::as_html(result())
+        rtables::as_html(result(), class_table = "table")
       ),
       shiny::tabPanel(
         "RTF"
