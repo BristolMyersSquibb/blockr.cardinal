@@ -1,9 +1,8 @@
-#' @import blockr falcon rtables
-new_falcon02_block <- function(
+new_relabel_block <- function(
     data,
     columns = colnames(data)[1L],
     values = character(),
-    ...){
+    ...) {
   sub_fields <- function(data, columns) {
     determine_field <- function(x) {
       string_field
@@ -40,22 +39,19 @@ new_falcon02_block <- function(
   )
   
   expr <- quote({
-    falcon::make_table_02(
-      df = .(expression),
-      vars = c("SEX", "AGE", "RACE"),
-      lbl_vars = c("Sex", "Age, years", "Race")
-    )
+    .(expression)
   })
   
-  blockr::new_block(
-    expr = expr,
+  new_block(
     fields = fields,
+    expr = expr,
     ...,
-    class = c("custom_block", "rtables_block", "submit_block")
+    class = c("relabel_block", "transform_block", "submit_block")
   )
 }
 
+#' @rdname filter_block
 #' @export
-falcon02_block <- function(data, ...){
-  blockr::initialize_block(new_falcon02_block(data, ...), data)
+relabel_block <- function(data, ...) {
+  initialize_block(new_relabel_block(data, ...), data)
 }
