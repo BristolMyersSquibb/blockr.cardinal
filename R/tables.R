@@ -42,7 +42,7 @@ falcon02_block <- function(data, ...){
   blockr::initialize_block(new_falcon02_block(data, ...), data)
 }
 
-#' @import blockr falcon rtables tern
+#' @import blockr falcon rtables
 new_falcon05_block <- function(data, columns = character(),...){
   sel_col <- \(sel) \(data) sel
   all_cols <- function(data) colnames(data)

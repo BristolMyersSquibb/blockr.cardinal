@@ -12,5 +12,4 @@ RoxygenNote: 7.3.1
 Imports: 
     falcon,
     rtables,
-    tern,
     gt
