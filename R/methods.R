@@ -17,9 +17,6 @@ server_output.rtables_block <- function (x, result, output) {
       shiny::tabPanel(
         "HTML",
         rtables::as_html(result(), class_table = "table")
-      ),
-      shiny::tabPanel(
-        "Text"
       )
     )
   })
