@@ -7,17 +7,21 @@ server_output.rtables_block <- function (x, result, output) {
     
     shiny::tabsetPanel(
       shiny::tabPanel(
-        "Text",
-        tags$pre(
-          tags$code(
-            txt
-          )
-        )
-      ),
-      shiny::tabPanel(
-        "HTML",
-        rtables::as_html(result(), class_table = "table")
+        "GT",
+        result()
       )
+      # shiny::tabPanel(
+      #   "Text",
+      #   tags$pre(
+      #     tags$code(
+      #       txt
+      #     )
+      #   )
+      # )
+      # shiny::tabPanel(
+      #   "HTML",
+      #   rtables::as_html(result(), class_table = "table")
+      # )
     )
   })
 }

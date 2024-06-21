@@ -13,6 +13,7 @@ Imports:
     blockr,
     falcon,
     rtables,
-    tern
+    tern,
+    gt
 Remotes:
   git::https://github.web.bms.com/GBDS-SP/blockr.git
