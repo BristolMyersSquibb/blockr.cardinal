@@ -7,13 +7,15 @@ library(blockr.pharmaverseadam)
 stack1 <- new_stack(
   random_cdisc_data_block,
   blockr.bms::filter_in_block,
-  falcon02_block
+  falcon02_block,
+  title = "Falcon 02"
 )
 
 stack2 <- new_stack(
   random_cdisc_data_block,
   blockr.bms::filter_in_block,
-  falcon05_block
+  falcon05_block,
+  title = "Falcon 05"
 )
 
 ui <- fluidPage(
