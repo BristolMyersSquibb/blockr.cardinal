@@ -6,8 +6,11 @@ format:
     code-fold: true
 editor: visual
 ---
+
 ## **FDA Table 1**
+
 Note: this table is taken from README.MD
+
 ```{r}
 #| warning: false
 library(falcon)
@@ -16,11 +19,14 @@ make_table_02(
   df = adsl,
   vars = c("SEX", "AGE", "RACE"),
   lbl_vars = c("Sex", "Age, years", "Race")
-)
+) 
+# |> as_html(class_table = "table", class_tr = "column")
 ```
+
 ## **FDA Table 2**
 
 ```{r}
+#| warning: false
 # Load Libraries & Data
 library(falcon)
 library(dplyr)

@@ -10,7 +10,7 @@ new_random_cdisc_data_block <- function(...){
     }),
     fields = list(
       dataset = new_select_field(
-        "cadab", 
+        "cadsl", 
         c("cadab", "cadae", "cadaette", "cadcm", "caddv", "cadeg", "cadex", 
           "cadhy", "cadlb", "cadmh", "cadpc", "cadpp", "cadqlqc", "cadqs", 
           "cadrs", "cadsl", "cadsub", "cadtr", "cadtte", "cadvs", "radab", 

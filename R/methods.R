@@ -2,13 +2,23 @@
 #' @export
 server_output.rtables_block <- function (x, result, output) {
   shiny::renderUI({
+    txt <- capture.output(print(result()))
+    txt <- paste0(txt, collapse = "\n")
+    
+    print(txt)
+    
     shiny::tabsetPanel(
       shiny::tabPanel(
-        "HTML",
-        rtables::as_html(result())
+        "Text",
+        tags$pre(
+          tags$code(
+            txt
+          )
+        )
       ),
       shiny::tabPanel(
-        "Text",
+        "HTML",
+        rtables::as_html(result(), class_table = "table")
       )
     )
   })
@@ -39,28 +49,4 @@ generate_server.rtables_block <- function (...) {
 block_combiner.rtables_block <- function (left, right, ...) {
   substitute(left %>% right, list(left = generate_code(left), 
                                   right = generate_code(right)))
-}
-
-#' @export
-download_ui.rtables_block <- function(x, ns, inputs_hidden = FALSE, ...) {
-  id <- ns("download")
-  
-  downloadLink(
-    outputId = id,
-    class = sprintf("cursor-pointer text-decoration-none block-download %s", inputs_hidden),
-    shiny::icon("download")
-  )
-}
-
-#' @export
-download.rtables_block <- function(x, session, object, ...) {
-  session$output$download <- downloadHandler(
-    filename = \() {
-      "file.pdf" 
-    },
-    content = \(file) {
-      print(object())
-      rtables::export_as_pdf(object(), file) 
-    }
-  )
 }
