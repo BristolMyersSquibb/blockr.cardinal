@@ -2,27 +2,45 @@
 #' @export
 server_output.rtables_block <- function (x, result, output) {
   shiny::renderUI({
-    txt <- utils::capture.output(print(result()))
+    txt <- utils::capture.output(print(result()$rtables))
     txt <- paste0(txt, collapse = "\n")
     
-    shiny::tabsetPanel(
-      shiny::tabPanel(
-        "GT",
-        result()
+    if(length(result()$gt) > 0){
+      shiny::tabsetPanel(
+        shiny::tabPanel(
+          "GT",
+          result()$gt
+        ),
+        shiny::tabPanel(
+          "Text",
+          tags$pre(
+            tags$code(
+              txt
+            )
+          )
+        ),
+        shiny::tabPanel(
+          "HTML",
+          rtables::as_html(result()$rtables, class_table = "table")
+        )
       )
-      # shiny::tabPanel(
-      #   "Text",
-      #   tags$pre(
-      #     tags$code(
-      #       txt
-      #     )
-      #   )
-      # )
-      # shiny::tabPanel(
-      #   "HTML",
-      #   rtables::as_html(result(), class_table = "table")
-      # )
-    )
+    } else {
+      shiny::tabsetPanel(
+        shiny::tabPanel(
+          "Text",
+          tags$pre(
+            tags$code(
+              txt
+            )
+          )
+        ),
+        shiny::tabPanel(
+          "HTML",
+          rtables::as_html(result()$rtables, class_table = "table")
+        )
+      )
+      
+    }
   })
 }
 

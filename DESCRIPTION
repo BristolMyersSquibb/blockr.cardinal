@@ -15,5 +15,3 @@ Imports:
     rtables,
     tern,
     gt
-Remotes:
-  git::https://github.web.bms.com/GBDS-SP/blockr.git

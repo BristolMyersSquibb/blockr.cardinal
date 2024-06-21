@@ -51,7 +51,6 @@ new_relabel_block <- function(
   )
 }
 
-#' @rdname filter_block
 #' @export
 relabel_block <- function(data, ...) {
   initialize_block(new_relabel_block(data, ...), data)

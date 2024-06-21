@@ -11,28 +11,28 @@ download_ui.rtables_blocks <- function(x, ns, inputs_hidden = FALSE, ...) {
     tags$ul(
       class = "dropdown-menu",
       tags$li(
-        downloadLink(
+        shiny::downloadLink(
           outputId = ns("word"),
           class = "cursor-pointer dropdown-item",
           "Word"
         )
       ),
       tags$li(
-        downloadLink(
+        shiny::downloadLink(
           outputId = ns("pdf"),
           class = "cursor-pointer dropdown-item",
           "PDF"
         )
       ),
       tags$li(
-        downloadLink(
+        shiny::downloadLink(
           outputId = ns("txt"),
           class = "cursor-pointer dropdown-item",
           "txt"
         )
       ),
       tags$li(
-        downloadLink(
+        shiny::downloadLink(
           outputId = ns("html"),
           class = "cursor-pointer dropdown-item",
           "HTML"
