@@ -12,6 +12,7 @@ RoxygenNote: 7.3.1
 Imports: 
     blockr,
     falcon,
-    rtables
+    rtables,
+    tern
 Remotes:
   git::https://github.web.bms.com/GBDS-SP/blockr.git

@@ -5,8 +5,6 @@ server_output.rtables_block <- function (x, result, output) {
     txt <- utils::capture.output(print(result()))
     txt <- paste0(txt, collapse = "\n")
     
-    print(txt)
-    
     shiny::tabsetPanel(
       shiny::tabPanel(
         "Text",
@@ -19,6 +17,9 @@ server_output.rtables_block <- function (x, result, output) {
       shiny::tabPanel(
         "HTML",
         rtables::as_html(result(), class_table = "table")
+      ),
+      shiny::tabPanel(
+        "Text"
       )
     )
   })
