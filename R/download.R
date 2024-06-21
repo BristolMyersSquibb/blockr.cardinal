@@ -45,7 +45,7 @@ download_ui.rtables_blocks <- function(x, ns, inputs_hidden = FALSE, ...) {
 
 #' @export
 download.rtables_blocks <- function(x, session, object, ...) {
-  session$output$word <- downloadHandler(
+  session$output$word <- shiny::downloadHandler(
     filename = \() {
       return("file.docx")
     },
@@ -54,7 +54,7 @@ download.rtables_blocks <- function(x, session, object, ...) {
     }
   )
   
-  session$output$pdf <- downloadHandler(
+  session$output$pdf <- shiny::downloadHandler(
     filename = \() {
       return("file.pdf")
     },
@@ -63,7 +63,7 @@ download.rtables_blocks <- function(x, session, object, ...) {
     }
   )
   
-  session$output$txt <- downloadHandler(
+  session$output$txt <- shiny::downloadHandler(
     filename = \() {
       return("file.txt")
     },
@@ -72,7 +72,7 @@ download.rtables_blocks <- function(x, session, object, ...) {
     }
   )
   
-  session$output$html <- downloadHandler(
+  session$output$html <- shiny::downloadHandler(
     filename = \() {
       return("file.html")
     },

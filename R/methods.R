@@ -2,7 +2,7 @@
 #' @export
 server_output.rtables_block <- function (x, result, output) {
   shiny::renderUI({
-    txt <- capture.output(print(result()))
+    txt <- utils::capture.output(print(result()))
     txt <- paste0(txt, collapse = "\n")
     
     print(txt)
