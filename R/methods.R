@@ -6,10 +6,10 @@ server_output.rtables_block <- function (x, result, output) {
     shiny::tabsetPanel(
       shiny::tabPanel(
         "HTML",
-        rtables::as_html(result(), class_table = "table")
+        rtables::as_html(result())
       ),
       shiny::tabPanel(
-        "RTF"
+        "Text"
       )
     )
   })
@@ -41,3 +41,25 @@ block_combiner.rtables_block <- function (left, right, ...) {
   substitute(left %>% right, list(left = generate_code(left), 
                                   right = generate_code(right)))
 }
+
+# download_ui.rtables_block <- function(x, ns, inputs_hidden = FALSE, ...) {
+#   id <- ns("download")
+#   
+#   downloadLink(
+#     outputId = id,
+#     class = sprintf("cursor-pointer text-decoration-none block-download %s", inputs_hidden),
+#     shiny::icon("download")
+#   )
+# }
+
+# download.rtables_block <- function(x, session, object, ...) {
+#   session$output$download <- downloadHandler(
+#     filename = \() {
+#       "file.pdf" 
+#     },
+#     content = \(file) {
+#       print(object())
+#       rtables::export_as_pdf(object(), file) 
+#     }
+#   )
+# }

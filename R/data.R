@@ -28,6 +28,6 @@ new_random_cdisc_data_block <- function(...){
 }
 
 #' @export
-random_cdsic_data_block <- function(...){
+random_cdisc_data_block <- function(...){
   blockr::initialize_block(new_random_cdisc_data_block(...))
 }
