@@ -25,7 +25,17 @@
     "Change columns label attributes",
     input = "data.frame",
     output = "data.frame",
-    package = "data.frame",
+    package = "blockr.falcon",
     classes = c("relabel_block", "transform_block", "submit_block")
+  )
+  
+  blockr::register_block(
+    random_cdisc_data_block,
+    "Random CDISC data",
+    "Use random CDISC datasets",
+    input = NA_character_,
+    output = "data.frame",
+    package = "blockr.falcon",
+    classes = c("random_cdisc_block", "data_block")
   )
 }
