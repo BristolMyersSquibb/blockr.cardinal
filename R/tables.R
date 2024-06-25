@@ -1,34 +1,34 @@
 #' @import blockr falcon rtables
 new_falcon02_block <- function(
-    data,
-    ...
+  data,
+  ...
 ){
   first_col <- function(data) colnames(data)[1]
   all_cols <- function(data) colnames(data)
-  
+
   fields <- list(
     columns = new_select_field(first_col, all_cols, multiple = TRUE, title = "Columns")
   )
-  
+
   expr <- quote({
     data <- droplevels(data)
-    
+
     rtables <- falcon::make_table_02(
       df = data,
       vars = .(columns)
     )
-    
+
     gt <- falcon::make_table_02_gtsum(
       df = data,
       vars = .(columns)
     )
-    
+
     list(
       rtables = rtables,
       gt = gt
     )
   })
-  
+
   blockr::new_block(
     expr = expr,
     fields = fields,
@@ -37,16 +37,21 @@ new_falcon02_block <- function(
   )
 }
 
+#' Falcon 02 block
+#'
+#' @param data ADAM dataset.
+#' @param ... Passed to [blockr::new_block()].
+#'
 #' @export
 falcon02_block <- function(data, ...){
   blockr::initialize_block(new_falcon02_block(data, ...), data)
 }
 
 #' @import blockr falcon rtables
-new_falcon05_block <- function(data, columns = character(),...){
+new_falcon05_block <- function(data, columns = character(), ...){
   sel_col <- \(sel) \(data) sel
   all_cols <- function(data) colnames(data)
-  
+
   fields <- list(
     colcounts = blockr::new_switch_field(TRUE, title = "Show column counts"),
     arm = blockr::new_select_field(sel_col("ARM"), all_cols, title = "ARM treatment"),
@@ -60,7 +65,7 @@ new_falcon05_block <- function(data, columns = character(),...){
       title = "Treatment duration"
     )
   )
-  
+
   blockr::new_block(
     expr = quote({
       rtables <- falcon::make_table_05(
@@ -73,7 +78,7 @@ new_falcon05_block <- function(data, columns = character(),...){
         trtedtm_var = .(trtedtm),
         u_trtdur = .(u_trtdur)
       )
-      
+
       list(
         rtables = rtables
       )
@@ -84,6 +89,11 @@ new_falcon05_block <- function(data, columns = character(),...){
   )
 }
 
+#' Falcon 05 block
+#'
+#' @param data ADAM dataset.
+#' @param ... Passed to [blockr::new_block()].
+#'
 #' @export
 falcon05_block <- function(data, ...){
   blockr::initialize_block(new_falcon05_block(data, ...), data)

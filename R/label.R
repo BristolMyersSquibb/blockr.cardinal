@@ -7,41 +7,40 @@ new_relabel_block <- function(
     determine_field <- function(x) {
       string_field
     }
-    
+
     field_args <- function(x) {
       list()
     }
-    
+
     cols <- data[, columns, drop = FALSE]
-    
+
     ctor <- lapply(cols, determine_field)
     args <- lapply(cols, field_args)
-    
+
     Map(do.call, ctor, args)
   }
-  
-  
+
   filter_exps <- function(data, values) {
     for(i in seq_along(values)){
       nm <- names(values)[i]
       attr(data[[nm]], "label") <- values[i] |> unlist() |> unname()
     }
-    
+
     data
   }
-  
+
   col_choices <- function(data) colnames(data)
-  
+
   fields <- list(
     columns = new_select_field(columns, col_choices, multiple = TRUE, title = "Columns"),
     values = new_list_field(values, sub_fields, title = "Value"),
     expression = new_hidden_field(filter_exps)
   )
-  
+
   expr <- quote({
     .(expression)
   })
-  
+
   new_block(
     fields = fields,
     expr = expr,
@@ -50,6 +49,13 @@ new_relabel_block <- function(
   )
 }
 
+#' Relabel block
+#'
+#' @param data Dataset to relabel.
+#' @param ... Passed to [blockr::new_block()].
+#'
+#' @import shiny
+#'
 #' @export
 relabel_block <- function(data, ...) {
   initialize_block(new_relabel_block(data, ...), data)
