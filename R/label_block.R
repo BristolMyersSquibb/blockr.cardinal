@@ -1,9 +1,9 @@
-
+#' @export
 new_relabel_block <- function(
-    data,
-    columns = colnames(data)[1L],
-    values = character(),
-    ...) {
+  columns = colnames(data)[1L],
+  values = character(),
+  ...
+) {
   sub_fields <- function(data, columns) {
     determine_field <- function(x) {
       blockr::string_field
@@ -48,14 +48,4 @@ new_relabel_block <- function(
     ...,
     class = c("relabel_block", "transform_block", "submit_block")
   )
-}
-
-#' Relabel block
-#'
-#' @param data Dataset to relabel.
-#' @param ... Passed to [blockr::new_block()].
-#'
-#' @export
-relabel_block <- function(data, ...) {
-  initialize_block(new_relabel_block(data, ...), data)
 }

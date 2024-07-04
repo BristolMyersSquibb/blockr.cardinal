@@ -1,6 +1,6 @@
 #' @import blockr falcon rtables
+#' @export
 new_falcon02_block <- function(
-  data,
   ...
 ){
   first_col <- function(data) colnames(data)[1]
@@ -37,18 +37,9 @@ new_falcon02_block <- function(
   )
 }
 
-#' Falcon 02 block
-#'
-#' @param data ADAM dataset.
-#' @param ... Passed to [blockr::new_block()].
-#'
-#' @export
-falcon02_block <- function(data, ...){
-  blockr::initialize_block(new_falcon02_block(data, ...), data)
-}
-
 #' @import blockr falcon rtables
-new_falcon05_block <- function(data, columns = character(), ...){
+#' @export
+new_falcon05_block <- function(columns = character(), ...){
   sel_col <- \(sel) \(data) sel
   all_cols <- function(data) colnames(data)
 
@@ -87,16 +78,6 @@ new_falcon05_block <- function(data, columns = character(), ...){
     ...,
     class = c("falcon05_block", "rtables_block")
   )
-}
-
-#' Falcon 05 block
-#'
-#' @param data ADAM dataset.
-#' @param ... Passed to [blockr::new_block()].
-#'
-#' @export
-falcon05_block <- function(data, ...){
-  blockr::initialize_block(new_falcon05_block(data, ...), data)
 }
 
 #' @export

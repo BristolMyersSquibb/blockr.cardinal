@@ -1,4 +1,5 @@
 #' @import blockr
+#' @export
 new_random_cdisc_data_block <- function(...) {
   blockr::new_block(
     name = "Random CDISC data block",
@@ -29,13 +30,4 @@ new_random_cdisc_data_block <- function(...) {
     ...,
     class = c("random_cdisc_block", "data_block")
   )
-}
-
-#' Random CDISC data
-#'
-#' @param ... Passed to [blockr::new_block()].
-#'
-#' @export
-random_cdisc_data_block <- function(...){
-  blockr::initialize_block(new_random_cdisc_data_block(...))
 }

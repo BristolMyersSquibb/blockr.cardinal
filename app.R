@@ -1,20 +1,18 @@
+devtools::document()
 pkgload::load_all()
 library(shiny)
 library(blockr)
-library(blockr.bms)
 library(blockr.pharmaverseadam)
 
 stack1 <- new_stack(
-  random_cdisc_data_block,
-  blockr.bms::filter_in_block,
-  falcon02_block,
+  new_random_cdisc_data_block,
+  new_falcon02_block,
   title = "Falcon 02"
 )
 
 stack2 <- new_stack(
-  random_cdisc_data_block,
-  blockr.bms::filter_in_block,
-  falcon05_block,
+  new_random_cdisc_data_block,
+  new_falcon05_block,
   title = "Falcon 05"
 )
 
