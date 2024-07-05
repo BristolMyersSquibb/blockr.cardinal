@@ -1,4 +1,4 @@
-#' @import blockr falcon rtables
+#' @import blockr cardinal rtables
 #' @export
 new_falcon02_block <- function(
   ...
@@ -18,7 +18,7 @@ new_falcon02_block <- function(
       vars = .(columns)
     )
 
-    gt <- falcon::make_table_02_gtsum(
+    gt <- cardinal::make_table_02_gtsum(
       df = data,
       vars = .(columns)
     )
@@ -59,7 +59,7 @@ new_falcon05_block <- function(columns = character(), ...){
 
   blockr::new_block(
     expr = quote({
-      rtables <- falcon::make_table_05(
+      rtables <- cardinal::make_table_05(
         df = data,
         show_colcounts = .(colcounts),
         saffl_var = .(saffl),
