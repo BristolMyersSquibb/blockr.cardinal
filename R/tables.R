@@ -1,26 +1,31 @@
 #' @import blockr cardinal rtables
 #' @export
 new_falcon02_block <- function(
-  ...
+  ...,
+  selected = character()
 ){
-  first_col <- function(data) colnames(data)[1]
   all_cols <- function(data) colnames(data)
 
   fields <- list(
-    columns = new_select_field(first_col, all_cols, multiple = TRUE, title = "Columns")
+    columns = new_select_field(selected, all_cols, multiple = TRUE, title = "Columns")
   )
 
   expr <- quote({
     data <- droplevels(data)
 
-    rtables <- falcon::make_table_02(
+    cols <- .(columns)
+
+    if(length(cols) == 0)
+      cols <- names(data)[1]
+
+    rtables <- cardinal::make_table_02(
       df = data,
-      vars = .(columns)
+      vars = cols
     )
 
     gt <- cardinal::make_table_02_gtsum(
       df = data,
-      vars = .(columns)
+      vars = cols
     )
 
     list(
@@ -40,16 +45,15 @@ new_falcon02_block <- function(
 #' @import blockr falcon rtables
 #' @export
 new_falcon05_block <- function(columns = character(), ...){
-  sel_col <- \(sel) \(data) sel
   all_cols <- function(data) colnames(data)
 
   fields <- list(
     colcounts = blockr::new_switch_field(TRUE, title = "Show column counts"),
-    arm = blockr::new_select_field(sel_col("ARM"), all_cols, title = "ARM treatment"),
-    id = blockr::new_select_field(sel_col("USUBJID"), all_cols, title = "Subject ID"),
-    saffl = blockr::new_select_field(sel_col("SAFFL"), all_cols, title = "Safety Flag"),
-    trtsdtm = blockr::new_select_field(sel_col("TRTSDTM"), all_cols, title = "Treatment start"),
-    trtedtm = blockr::new_select_field(sel_col("TRTEDTM"), all_cols, title = "Treatment end"),
+    arm = blockr::new_select_field("ARM", all_cols, title = "ARM treatment"),
+    id = blockr::new_select_field("USUBJID", all_cols, title = "Subject ID"),
+    saffl = blockr::new_select_field("SAFFL", all_cols, title = "Safety Flag"),
+    trtsdtm = blockr::new_select_field("TRTSDTM", all_cols, title = "Treatment start"),
+    trtedtm = blockr::new_select_field("TRTEDTM", all_cols, title = "Treatment end"),
     u_trtdur = blockr::new_select_field(
       "days",
       c("days", "weeks", "months", "years"),
