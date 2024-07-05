@@ -6,6 +6,7 @@ library(blockr.pharmaverseadam)
 
 stack1 <- new_stack(
   new_random_cdisc_data_block,
+  new_relabel_block,
   new_falcon02_block,
   title = "Falcon 02"
 )

@@ -6,7 +6,7 @@ new_relabel_block <- function(
 ) {
   sub_fields <- function(data, columns) {
     determine_field <- function(x) {
-      string_field
+      blockr::new_string_field
     }
 
     field_args <- function(x) {
