@@ -4,3 +4,4 @@
 ^\.Rproj\.user$
 ^app\.R$
 ^rtables FDA Tables\.qmd$
+^\.lintr$
