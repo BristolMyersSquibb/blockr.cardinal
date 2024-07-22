@@ -1,50 +1,6 @@
-#' @import blockr cardinal rtables
-#' @export
-new_falcon02_block <- function(
-  ...,
-  selected = character()
-){
-  all_cols <- function(data) colnames(data)
-
-  fields <- list(
-    columns = new_select_field(selected, all_cols, multiple = TRUE, title = "Columns")
-  )
-
-  expr <- quote({
-    data <- droplevels(data)
-
-    cols <- .(columns)
-
-    if(length(cols) == 0)
-      cols <- names(data)[1]
-
-    rtables <- cardinal::make_table_02(
-      df = data,
-      vars = cols
-    )
-
-    gt <- cardinal::make_table_02_gtsum(
-      df = data,
-      vars = cols
-    )
-
-    list(
-      rtables = rtables,
-      gt = gt
-    )
-  })
-
-  blockr::new_block(
-    expr = expr,
-    fields = fields,
-    ...,
-    class = c("falcon02_block", "rtables_block", "submit_block")
-  )
-}
-
 #' @import blockr falcon rtables
 #' @export
-new_falcon05_block <- function(columns = character(), ...){
+new_cardinal05_block <- function(columns = character(), ...){
   all_cols <- function(data) colnames(data)
 
   fields <- list(
@@ -80,12 +36,12 @@ new_falcon05_block <- function(columns = character(), ...){
     }),
     fields = fields,
     ...,
-    class = c("falcon05_block", "rtables_block")
+    class = c("cardinal05_block", "rtables_block")
   )
 }
 
 #' @export
-layout.falcon05_block <- function(x, fields, ...){
+layout.cardinal05_block <- function(x, fields, ...){
   div(
     div(
       class = "row",

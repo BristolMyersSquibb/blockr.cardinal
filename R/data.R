@@ -1,6 +1,9 @@
 #' @import blockr
 #' @export
-new_random_cdisc_data_block <- function(...) {
+new_random_cdisc_data_block <- function(
+  ...,
+  selected = "cadsl"
+) {
   blockr::new_block(
     name = "Random CDISC data block",
     expr = quote({
@@ -13,8 +16,8 @@ new_random_cdisc_data_block <- function(...) {
       )
     }),
     fields = list(
-      dataset = new_select_field(
-        "cadsl",
+      dataset = blockr::new_select_field(
+        selected,
         c(
           "cadab", "cadae", "cadaette", "cadcm", "caddv", "cadeg", "cadex",
           "cadhy", "cadlb", "cadmh", "cadpc", "cadpp", "cadqlqc", "cadqs",

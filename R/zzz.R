@@ -1,22 +1,32 @@
 .onLoad <- function(libname, pkgname){
   blockr::register_block(
-    new_falcon02_block,
-    "Falcon 02",
-    "A Falcon 02 table",
+    new_cardinal02_block,
+    "Cardinal 02",
+    "A Cardinal 02 table",
     input = "data.frame",
     output = "list",
     package = pkgname,
-    classes = c("falcon02_block", "rtables_block", "submit_block")
+    classes = c("cardinal02_block", "rtables_block", "submit_block")
   )
 
   blockr::register_block(
-    new_falcon05_block,
-    "Falcon 05",
-    "A Falcon 05 table",
+    new_cardinal03_block,
+    "Cardinal 03",
+    "A Cardinal 03 table",
     input = "data.frame",
     output = "list",
     package = pkgname,
-    classes = c("falcon05_block", "rtables_block", "submit_block")
+    classes = c("cardinal03_block", "rtables_block", "submit_block")
+  )
+
+  blockr::register_block(
+    new_cardinal05_block,
+    "Cardinal 05",
+    "A Cardinal 05 table",
+    input = "data.frame",
+    output = "list",
+    package = pkgname,
+    classes = c("cardinal05_block", "rtables_block", "submit_block")
   )
 
   blockr::register_block(
