@@ -478,6 +478,57 @@ stack34 <- new_stack(
   title = "Cardinal 34"
 )
 
+# cardinal 35
+stack35 <- new_stack(
+  data = new_random_cdisc_data_block(selected = "cadae"),
+  table = new_cardinal35_block(
+    arm_var = "ARM",
+    id_var = "USUBJID",
+    saffl_var = "SAFFL",
+    soc_var = "AESOC"
+  ),
+  title = "Cardinal 35"
+)
+
+# cardinal 36
+stack36 <- new_stack(
+  data = new_random_cdisc_data_block(selected = "cadae"),
+  table = new_cardinal36_block(
+    arm_var = "ARM",
+    id_var = "USUBJID",
+    saffl_var = "SAFFL",
+    soc_var = "AESOC",
+    pref_var = "AEDECOD"
+  ),
+  title = "Cardinal 36"
+)
+
+# cardinal 38
+c38data <- random.cdisc.data::cadae %>%
+  dplyr::rename(FMQ01SC = SMQ01SC) %>%
+  dplyr::mutate(
+    AESER = sample(c("Y", "N"), size = nrow(random.cdisc.data::cadae), replace = TRUE),
+    FMQ01NAM = sample(
+      c("FMQ1", "FMQ2", "FMQ3"), size = nrow(random.cdisc.data::cadae), replace = TRUE
+    )
+  )
+c38data$FMQ01SC[is.na(c38data$FMQ01SC)] <- "Broad"
+
+stack38 <- new_stack(
+  data = new_dat_block(data = c38data),
+  table = new_cardinal38_block(
+    arm_var = "ARM",
+    id_var = "USUBJID",
+    saffl_var = "SAFFL",
+    trtemfl_var = "TRTEMFL",
+    fmq_scope = "BROAD",
+    fmqsc_var = "FMQ01SC",
+    fmqnam_var = "FMQ01NAM",
+    pref_var = "AEDECOD"
+  ),
+  title = "Cardinal 38"
+)
+
 ui <- fluidPage(
   theme = bslib::bs_theme(5L),
   div(
@@ -608,6 +659,18 @@ ui <- fluidPage(
     ),
     div(
       class = "col-md-6",
+      generate_ui(stack35)
+    )
+  ),
+  div(
+    class = "row",
+    div(
+      class = "col-md-6",
+      generate_ui(stack36)
+    ),
+    div(
+      class = "col-md-6",
+      generate_ui(stack38)
     )
   )
 )
@@ -636,6 +699,9 @@ server <- function(...){
   generate_server(stack32)
   generate_server(stack33)
   generate_server(stack34)
+  generate_server(stack35)
+  generate_server(stack36)
+  generate_server(stack38)
 }
 
 shinyApp(ui, server)
