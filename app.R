@@ -339,6 +339,25 @@ stack18 <- new_stack(
   title = "Cardinal 18"
 )
 
+# cardinal 20
+c20data <- random.cdisc.data::cadae
+c20data$AESIFL <- ifelse(c20data$AESOC %in% c("cl A", "cl D"), "Y", "N")
+c20data$AELABFL <- sample(c("Y", "N"), nrow(c20data), replace = TRUE)
+
+stack20 <- new_stack(
+  data = new_dat_block(data = c20data),
+  table = new_cardinal20_block(
+    arm_var = "ARM",
+    soc_var = "AEBODSYS",
+    id_var = "USUBJID",
+    saffl_var = "SAFFL",
+    pref_var = "AEDECOD",
+    aesifl_var = "AESIFL",
+    aelabfl_var = "AELABFL"
+  ),
+  title = "Cardinal 20"
+)
+
 ui <- fluidPage(
   theme = bslib::bs_theme(5L),
   div(
@@ -436,6 +455,7 @@ ui <- fluidPage(
     ),
     div(
       class = "col-md-6",
+      generate_ui(stack20)
     )
   )
 )
@@ -458,6 +478,7 @@ server <- function(...){
   generate_server(stack16)
   generate_server(stack17)
   generate_server(stack18)
+  generate_server(stack20)
 }
 
 shinyApp(ui, server)
