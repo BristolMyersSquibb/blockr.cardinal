@@ -358,6 +358,40 @@ stack20 <- new_stack(
   title = "Cardinal 20"
 )
 
+# cardinal 21
+c21adsl <- random.cdisc.data::cadsl %>%
+  dplyr::mutate(AGEGR1 = as.factor(dplyr::case_when(
+    AGE >= 17 & AGE < 65 ~ ">=17 to <65",
+    AGE >= 65 ~ ">=65",
+    AGE >= 65 & AGE < 75 ~ ">=65 to <75",
+    AGE >= 75 ~ ">=75"
+  )) %>% formatters::with_label("Age Group, years")) %>%
+  formatters::var_relabel(
+    AGE = "Age, years"
+  )
+
+c21adae <- random.cdisc.data::cadae
+c21adae$ASER <- c21adae$AESER
+
+c21data <- dplyr::left_join(
+  c21adsl,
+  c21adae,
+  by = intersect(names(c21adsl), names(c21adae))
+)
+
+stack21 <- new_stack(
+  data = new_dat_block(data = c21data),
+  table = new_cardinal21_block(
+    arm_var = "ARM",
+    soc_var = "AEBODSYS",
+    id_var = "USUBJID",
+    saffl_var = "SAFFL",
+    vars = c("SEX", "AGEGR1", "RACE", "ETHNIC"),
+    denom = c("N_s", "N_col", "n")
+  ),
+  title = "Cardinal 21"
+)
+
 ui <- fluidPage(
   theme = bslib::bs_theme(5L),
   div(
@@ -457,6 +491,16 @@ ui <- fluidPage(
       class = "col-md-6",
       generate_ui(stack20)
     )
+  ),
+  div(
+    class = "row",
+    div(
+      class = "col-md-6",
+      generate_ui(stack21)
+    ),
+    div(
+      class = "col-md-6",
+    )
   )
 )
 
@@ -479,6 +523,7 @@ server <- function(...){
   generate_server(stack17)
   generate_server(stack18)
   generate_server(stack20)
+  generate_server(stack21)
 }
 
 shinyApp(ui, server)
