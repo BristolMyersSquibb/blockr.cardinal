@@ -174,16 +174,31 @@ stack11 <- new_stack(
   title = "Cardinal 11"
 )
 
+c12data <- random.cdisc.data::cadae
+c12data$DCSREAS[is.na(c12data$DCSREAS)] <- "ADVERSE EVENT"
+
 # cardinal 12
 stack12 <- new_stack(
-  data = new_random_cdisc_data_block(selected = "cadae"),
-  table = new_cardinal09_block(
+  data = new_dat_block(data = c12data),
+  table = new_cardinal12_block(
     arm_var = "ARM",
     id_var = "USUBJID",
     saffl_var = "SAFFL",
     pref_var = "AEDECOD"
   ),
   title = "Cardinal 12"
+)
+
+# cardinal 13
+stack13 <- new_stack(
+  data = new_random_cdisc_data_block(selected = "cadae"),
+  table = new_cardinal13_block(
+    arm_var = "ARM",
+    id_var = "USUBJID",
+    saffl_var = "SAFFL",
+    pref_var = "AEDECOD"
+  ),
+  title = "Cardinal 13"
 )
 
 ui <- fluidPage(
@@ -250,6 +265,7 @@ ui <- fluidPage(
     ),
     div(
       class = "col-md-6",
+      generate_ui(stack13)
     )
   )
 )
@@ -266,6 +282,7 @@ server <- function(...){
   generate_server(stack10)
   generate_server(stack11)
   generate_server(stack12)
+  generate_server(stack13)
 }
 
 shinyApp(ui, server)
