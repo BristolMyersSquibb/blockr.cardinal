@@ -277,6 +277,68 @@ stack16 <- new_stack(
   title = "Cardinal 16"
 )
 
+# cardinal 17
+c17data <- dplyr::rename(random.cdisc.data::cadae, FMQ01SC = SMQ01SC, FMQ01NAM = SMQ01NAM)
+levels(c17data$FMQ01SC) <- c("BROAD", "NARROW")
+c17data$FMQ01SC[is.na(c17data$FMQ01SC)] <- "NARROW"
+c17data$FMQ01NAM <- factor(c17data$FMQ01NAM, levels = c(
+  unique(c17data$FMQ01NAM), "Abnormal Uterine Bleeding", "Amenorrhea",
+  "Bacterial Vaginosis", "Decreased Menstrual Bleeding"
+))
+c17data$FMQ01NAM[c17data$SEX == "F"] <- as.factor(
+  sample(c(
+    "Abnormal Uterine Bleeding", "Amenorrhea",
+    "Bacterial Vaginosis", "Decreased Menstrual Bleeding"
+  ), sum(c17data$SEX == "F"), replace = TRUE)
+)
+
+stack17 <- new_stack(
+  data = new_dat_block(data = c17data),
+  table = new_cardinal17_block(
+    arm_var = "ARM",
+    soc_var = "AEBODSYS",
+    id_var = "USUBJID",
+    saffl_var = "SAFFL",
+    pref_var = "AEDECOD",
+    sex_scope = "F",
+    fmq_scope = "BROAD",
+    fmqsc_var = "FMQ01SC",
+    fmqnam_var = "FMQ01NAM"
+  ),
+  title = "Cardinal 17"
+)
+
+# cardinal 18
+c18data <- dplyr::rename(random.cdisc.data::cadae, FMQ01SC = SMQ01SC, FMQ01NAM = SMQ01NAM)
+levels(c14data$FMQ01SC) <- c("BROAD", "NARROW")
+c18data$FMQ01SC[is.na(c18data$FMQ01SC)] <- "NARROW"
+c18data$FMQ01NAM <- factor(c18data$FMQ01NAM, levels = c(
+  unique(c18data$FMQ01NAM), "Abnormal Uterine Bleeding", "Amenorrhea",
+  "Bacterial Vaginosis", "Decreased Menstrual Bleeding"
+))
+c18data$FMQ01NAM[c18data$SEX == "F"] <- as.factor(
+  sample(c(
+    "Abnormal Uterine Bleeding", "Amenorrhea",
+    "Bacterial Vaginosis", "Decreased Menstrual Bleeding"
+  ), sum(c18data$SEX == "F"), replace = TRUE)
+)
+
+stack18 <- new_stack(
+  data = new_dat_block(data = c17data),
+  table = new_cardinal18_block(
+    arm_var = "ARM",
+    soc_var = "AEBODSYS",
+    id_var = "USUBJID",
+    saffl_var = "SAFFL",
+    pref_var = "AEDECOD",
+    sex_scope = "F",
+    fmq_scope = "BROAD",
+    fmqsc_var = "FMQ01SC",
+    fmqnam_var = "FMQ01NAM"
+  ),
+  title = "Cardinal 18"
+)
+
 ui <- fluidPage(
   theme = bslib::bs_theme(5L),
   div(
@@ -363,6 +425,17 @@ ui <- fluidPage(
     ),
     div(
       class = "col-md-6",
+      generate_ui(stack17)
+    )
+  ),
+  div(
+    class = "row",
+    div(
+      class = "col-md-6",
+      generate_ui(stack18)
+    ),
+    div(
+      class = "col-md-6",
     )
   )
 )
@@ -383,6 +456,8 @@ server <- function(...){
   generate_server(stack14)
   generate_server(stack15)
   generate_server(stack16)
+  generate_server(stack17)
+  generate_server(stack18)
 }
 
 shinyApp(ui, server)

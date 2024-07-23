@@ -1,6 +1,6 @@
 #' @import blockr cardinal rtables
 #' @export
-new_cardinal16_block <- function(
+new_cardinal17_block <- function(
   ...,
   id_var = character(),
   arm_var = character(),
@@ -9,7 +9,7 @@ new_cardinal16_block <- function(
   fmqnam_var = character(),
   fmq_scope = "BROAD",
   pref_var = character(),
-  sex_scope = "M",
+  sex_scope = "F",
   na_level = "<Missing>",
   show_colcounts = TRUE,
   prune_0 = TRUE
@@ -38,7 +38,7 @@ new_cardinal16_block <- function(
     fmqsc_var <- get_column_default(data, .(fmqsc_var), "FMQ01SC")
     fmqnam_var <- get_column_default(data, .(fmqnam_var), "FMQ01NAM")
 
-    rtables <- cardinal::make_table_16(
+    rtables <- cardinal::make_table_17(
       adae = data,
       arm_var = arm_var,
       show_colcounts = .(show_colcounts),
@@ -62,6 +62,6 @@ new_cardinal16_block <- function(
     expr = expr,
     fields = fields,
     ...,
-    class = c("cardinal16_block", "rtables_block", "submit_block")
+    class = c("cardinal17_block", "rtables_block", "submit_block")
   )
 }
