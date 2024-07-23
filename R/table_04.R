@@ -15,7 +15,7 @@ new_cardinal04_block <- function(
     id_var = new_select_field(id_var, all_cols, title = "ID"),
     arm_var = new_select_field(arm_var, all_cols, title = "ARM"),
     pop_vars = new_select_field(pop_vars, all_cols, multiple = TRUE, title = "Population"),
-    lbl_pop_vars = new_create_field(pop_vars, title = "Population labels"),
+    lbl_pop_vars = new_create_field(lbl_pop_vars, title = "Population labels"),
     show_colcounts = new_switch_field(show_colcounts, title = "Show column counts"),
     prune_0 = new_switch_field(title = "Prune all zero rows")
   )

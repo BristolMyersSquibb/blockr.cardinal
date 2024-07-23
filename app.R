@@ -99,13 +99,25 @@ stack6 <- new_stack(
 # cardinal 07
 stack7 <- new_stack(
   data = new_random_cdisc_data_block(selected = "cadae"),
-  table = new_cardinal06_block(
+  table = new_cardinal07_block(
     arm_var = "ARM",
     id_var = "USUBJID",
     saffl_var = "SAFFL",
     na_level = "MISSING"
   ),
   title = "Cardinal 07"
+)
+
+# cardinal 09
+stack9 <- new_stack(
+  data = new_random_cdisc_data_block(selected = "cadae"),
+  table = new_cardinal09_block(
+    arm_var = "ARM",
+    id_var = "USUBJID",
+    saffl_var = "SAFFL",
+    pref_var = "AEDECOD"
+  ),
+  title = "Cardinal 09"
 )
 
 ui <- fluidPage(
@@ -142,6 +154,16 @@ ui <- fluidPage(
       class = "col-md-6",
       generate_ui(stack7)
     )
+  ),
+  div(
+    class = "row",
+    div(
+      class = "col-md-6",
+    ),
+    div(
+      class = "col-md-6",
+      generate_ui(stack9)
+    )
   )
 )
 
@@ -152,6 +174,8 @@ server <- function(...){
   generate_server(stack5)
   generate_server(stack6)
   generate_server(stack7)
+
+  generate_server(stack9)
 }
 
 shinyApp(ui, server)
