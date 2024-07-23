@@ -5,6 +5,7 @@ new_cardinal04_block <- function(
   id_var = character(),
   arm_var = character(),
   pop_vars = character(),
+  lbl_pop_vars = character(),
   show_colcounts = FALSE,
   prune_0 = TRUE
 ){
@@ -14,6 +15,7 @@ new_cardinal04_block <- function(
     id_var = new_select_field(id_var, all_cols, title = "ID"),
     arm_var = new_select_field(arm_var, all_cols, title = "ARM"),
     pop_vars = new_select_field(pop_vars, all_cols, multiple = TRUE, title = "Population"),
+    lbl_pop_vars = new_create_field(pop_vars, title = "Population labels"),
     show_colcounts = new_switch_field(show_colcounts, title = "Show column counts"),
     prune_0 = new_switch_field(title = "Prune all zero rows")
   )
@@ -30,6 +32,7 @@ new_cardinal04_block <- function(
       arm_var = arm_var,
       id_var = id_var,
       pop_vars = .(pop_vars),
+      lbl_pop_vars = .(lbl_pop_vars),
       prune_0 = .(prune_0)
     )
 

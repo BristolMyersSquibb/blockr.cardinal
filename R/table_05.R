@@ -1,4 +1,4 @@
-#' @import blockr falcon rtables
+#' @import blockr cardinal rtables
 #' @export
 new_cardinal05_block <- function(columns = character(), ...){
   all_cols <- function(data) colnames(data)

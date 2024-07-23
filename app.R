@@ -51,6 +51,7 @@ stack3 <- new_stack(
   title = "Cardinal 03"
 )
 
+# cardinal 04
 c4data <- random.cdisc.data::cadsl %>%
   dplyr::mutate(test = rbinom(400, 1, 0.5)) %>%
   dplyr::mutate(
@@ -68,7 +69,10 @@ stack4 <- new_stack(
   table = new_cardinal04_block(
     arm_var = "ARM",
     id_var = "USUBJID",
-    pop_vars = c("RANDFL", "ITTFL", "SAFFL", "PPROTFL")
+    pop_vars = c("RANDFL", "ITTFL", "SAFFL", "PPROTFL"),
+    lbl_pop_vars = c(
+      "randomized", "ITT/mITT pop", "Safety pop", "Pre-protocol pop"
+    )
   ),
   title = "Cardinal 04"
 )
