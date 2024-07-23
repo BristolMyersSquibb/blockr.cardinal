@@ -219,6 +219,64 @@ stack14 <- new_stack(
   title = "Cardinal 14"
 )
 
+# cardinal 15
+c15data <- random.cdisc.data::cadae
+c15data <- dplyr::rename(c15data, FMQ01SC = SMQ01SC, FMQ01NAM = SMQ01NAM)
+levels(c15data$FMQ01SC) <- c("BROAD", "NARROW")
+c15data$FMQ01SC[is.na(c15data$FMQ01SC)] <- "NARROW"
+c15data$FMQ01NAM <- factor(
+  c15data$FMQ01NAM,
+  levels = c(unique(c15data$FMQ01NAM), "Erectile Dysfunction", "Gynecomastia")
+)
+c15data$FMQ01NAM[c15data$SEX == "M"] <- as.factor(
+  sample(c("Erectile Dysfunction", "Gynecomastia"), sum(c15data$SEX == "M"), replace = TRUE)
+)
+
+stack15 <- new_stack(
+  data = new_dat_block(data = c15data),
+  table = new_cardinal15_block(
+    arm_var = "ARM",
+    soc_var = "AEBODSYS",
+    id_var = "USUBJID",
+    saffl_var = "SAFFL",
+    pref_var = "AEDECOD",
+    sex_scope = "M",
+    fmq_scope = "NARROW",
+    fmqsc_var = "FMQ01SC",
+    fmqnam_var = "FMQ01NAM"
+  ),
+  title = "Cardinal 15"
+)
+
+# cardinal 16
+c16data <- random.cdisc.data::cadae
+c16data <- dplyr::rename(c16data, FMQ01SC = SMQ01SC, FMQ01NAM = SMQ01NAM)
+levels(c16data$FMQ01SC) <- c("BROAD", "NARROW")
+c16data$FMQ01SC[is.na(c16data$FMQ01SC)] <- "NARROW"
+c16data$FMQ01NAM <- factor(
+  c16data$FMQ01NAM,
+  levels = c(unique(c16data$FMQ01NAM), "Erectile Dysfunction", "Gynecomastia")
+)
+c16data$FMQ01NAM[c16data$SEX == "M"] <- as.factor(
+  sample(c("Erectile Dysfunction", "Gynecomastia"), sum(c16data$SEX == "M"), replace = TRUE)
+)
+
+stack16 <- new_stack(
+  data = new_dat_block(data = c16data),
+  table = new_cardinal16_block(
+    arm_var = "ARM",
+    soc_var = "AEBODSYS",
+    id_var = "USUBJID",
+    saffl_var = "SAFFL",
+    pref_var = "AEDECOD",
+    sex_scope = "M",
+    fmq_scope = "BROAD",
+    fmqsc_var = "FMQ01SC",
+    fmqnam_var = "FMQ01NAM"
+  ),
+  title = "Cardinal 16"
+)
+
 ui <- fluidPage(
   theme = bslib::bs_theme(5L),
   div(
@@ -294,6 +352,17 @@ ui <- fluidPage(
     ),
     div(
       class = "col-md-6",
+      generate_ui(stack15)
+    )
+  ),
+  div(
+    class = "row",
+    div(
+      class = "col-md-6",
+      generate_ui(stack16)
+    ),
+    div(
+      class = "col-md-6",
     )
   )
 )
@@ -312,6 +381,8 @@ server <- function(...){
   generate_server(stack12)
   generate_server(stack13)
   generate_server(stack14)
+  generate_server(stack15)
+  generate_server(stack16)
 }
 
 shinyApp(ui, server)
