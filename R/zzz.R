@@ -190,6 +190,26 @@
   )
 
   blockr::register_block(
+    new_cardinal32_block,
+    "Cardinal 32",
+    "A Cardinal 32 table",
+    input = "data.frame",
+    output = "list",
+    package = pkgname,
+    classes = c("cardinal32_block", "rtables_block", "submit_block")
+  )
+
+  blockr::register_block(
+    new_cardinal33_block,
+    "Cardinal 33",
+    "A Cardinal 33 table",
+    input = "data.frame",
+    output = "list",
+    package = pkgname,
+    classes = c("cardinal33_block", "rtables_block", "submit_block")
+  )
+
+  blockr::register_block(
     new_relabel_block,
     "Relabel block",
     "Change columns label attributes",
