@@ -201,6 +201,24 @@ stack13 <- new_stack(
   title = "Cardinal 13"
 )
 
+# cardinal 14
+c14data <- random.cdisc.data::cadae |>
+  dplyr::rename(FMQ01SC = SMQ01SC, FMQ01NAM = SMQ01NAM)
+levels(c14data$FMQ01SC) <- c("BROAD", "NARROW")
+c14data$FMQ01SC[is.na(c14data$FMQ01SC)] <- "NARROW"
+
+stack14 <- new_stack(
+  data = new_dat_block(data = c14data),
+  table = new_cardinal14_block(
+    arm_var = "ARM",
+    soc_var = "AEBODSYS",
+    id_var = "USUBJID",
+    saffl_var = "SAFFL",
+    pref_var = "AEDECOD"
+  ),
+  title = "Cardinal 14"
+)
+
 ui <- fluidPage(
   theme = bslib::bs_theme(5L),
   div(
@@ -267,6 +285,16 @@ ui <- fluidPage(
       class = "col-md-6",
       generate_ui(stack13)
     )
+  ),
+  div(
+    class = "row",
+    div(
+      class = "col-md-6",
+      generate_ui(stack14)
+    ),
+    div(
+      class = "col-md-6",
+    )
   )
 )
 
@@ -283,6 +311,7 @@ server <- function(...){
   generate_server(stack11)
   generate_server(stack12)
   generate_server(stack13)
+  generate_server(stack14)
 }
 
 shinyApp(ui, server)

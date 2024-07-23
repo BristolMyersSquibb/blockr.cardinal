@@ -100,13 +100,23 @@
   )
 
   blockr::register_block(
-    new_cardinal12_block,
+    new_cardinal13_block,
     "Cardinal 13",
     "A Cardinal 13 table",
     input = "data.frame",
     output = "list",
     package = pkgname,
     classes = c("cardinal13_block", "rtables_block", "submit_block")
+  )
+
+  blockr::register_block(
+    new_cardinal14_block,
+    "Cardinal 14",
+    "A Cardinal 14 table",
+    input = "data.frame",
+    output = "list",
+    package = pkgname,
+    classes = c("cardinal14_block", "rtables_block", "submit_block")
   )
 
   blockr::register_block(
