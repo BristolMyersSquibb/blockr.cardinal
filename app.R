@@ -426,6 +426,17 @@ stack22 <- new_stack(
   title = "Cardinal 22"
 )
 
+# cardinal 32
+stack32 <- new_stack(
+  data = new_random_cdisc_data_block(selected = "cadvs"),
+  table = new_cardinal32_block(
+    arm_var = "ARM",
+    id_var = "USUBJID",
+    saffl_var = "SAFFL"
+  ),
+  title = "Cardinal 32"
+)
+
 ui <- fluidPage(
   theme = bslib::bs_theme(5L),
   div(
@@ -536,6 +547,16 @@ ui <- fluidPage(
       class = "col-md-6",
       generate_ui(stack22)
     )
+  ),
+  div(
+    class = "row",
+    div(
+      class = "col-md-6",
+      generate_ui(stack32)
+    ),
+    div(
+      class = "col-md-6",
+    )
   )
 )
 
@@ -560,6 +581,7 @@ server <- function(...){
   generate_server(stack20)
   generate_server(stack21)
   generate_server(stack22)
+  generate_server(stack32)
 }
 
 shinyApp(ui, server)
