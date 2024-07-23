@@ -451,6 +451,33 @@ stack33 <- new_stack(
   title = "Cardinal 33"
 )
 
+# cardinal 34
+c34data <- random.cdisc.data::cadae %>%
+  dplyr::rename(FMQ01SC = SMQ01SC) %>%
+  dplyr::mutate(
+    AESER = sample(c("Y", "N"), size = nrow(random.cdisc.data::cadae), replace = TRUE),
+    FMQ01NAM = sample(
+      c("FMQ1", "FMQ2", "FMQ3"), size = nrow(random.cdisc.data::cadae),
+      replace = TRUE
+    )
+  )
+c34data$FMQ01SC[is.na(c34data$FMQ01SC)] <- "NARROW"
+
+stack34 <- new_stack(
+  data = new_dat_block(data = c34data),
+  table = new_cardinal34_block(
+    arm_var = "ARM",
+    id_var = "USUBJID",
+    saffl_var = "SAFFL",
+    trtemfl_var = "TRTEMFL",
+    fmq_scope = "NARROW",
+    fmqsc_var = "FMQ01SC",
+    fmqnam_var = "FMQ01NAM",
+    pref_var = "AEDECOD"
+  ),
+  title = "Cardinal 34"
+)
+
 ui <- fluidPage(
   theme = bslib::bs_theme(5L),
   div(
@@ -572,6 +599,16 @@ ui <- fluidPage(
       class = "col-md-6",
       generate_ui(stack33)
     )
+  ),
+  div(
+    class = "row",
+    div(
+      class = "col-md-6",
+      generate_ui(stack34)
+    ),
+    div(
+      class = "col-md-6",
+    )
   )
 )
 
@@ -598,6 +635,7 @@ server <- function(...){
   generate_server(stack22)
   generate_server(stack32)
   generate_server(stack33)
+  generate_server(stack34)
 }
 
 shinyApp(ui, server)
