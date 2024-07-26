@@ -1,3 +1,4 @@
+#' FDA Table 5: Duration of Treatment Exposure, Safety Population, Pooled Analyses
 #' @import blockr cardinal rtables
 #' @export
 new_cardinal05_block <- function(columns = character(), ...){

@@ -1,3 +1,4 @@
+#' FDA Table 3: Patient Screening and Enrollment, Trials A and B
 #' @import blockr cardinal rtables
 #' @export
 new_cardinal03_block <- function(

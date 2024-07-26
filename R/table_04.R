@@ -1,3 +1,4 @@
+#' FDA Table 4: Patient Disposition, Pooled Analyses
 #' @import blockr cardinal rtables
 #' @export
 new_cardinal04_block <- function(

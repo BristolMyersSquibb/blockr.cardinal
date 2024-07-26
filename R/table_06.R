@@ -1,3 +1,4 @@
+#' FDA Table 6: Overview of Adverse Events, Safety Population, Pooled Analyses
 #' @import blockr cardinal rtables
 #' @export
 new_cardinal06_block <- function(

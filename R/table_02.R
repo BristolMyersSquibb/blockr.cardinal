@@ -1,3 +1,9 @@
+#' FDA Table 2: Baseline Demographic and Clinical Characteristics, Safety Population, Pooled Analyses
+#'
+#' @param arm_var ARM.
+#' @param vars Variables.
+#' @param saffl_var Safety flag.
+#'
 #' @import blockr cardinal rtables
 #' @export
 new_cardinal02_block <- function(
@@ -5,7 +11,7 @@ new_cardinal02_block <- function(
   arm_var = character(),
   vars = character(),
   saffl_var = character()
-){
+) {
   all_cols <- function(data) colnames(data)
 
   fields <- list(
