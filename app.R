@@ -19,10 +19,23 @@ new_dat_block <- function(
   )
 }
 
+c2data <- random.cdisc.data::cadsl %>%
+  dplyr::mutate(AGEGR1 = as.factor(dplyr::case_when(
+    AGE >= 17 & AGE < 65 ~ ">=17 to <65",
+    AGE >= 65 ~ ">=65",
+    AGE >= 65 & AGE < 75 ~ ">=65 to <75",
+    AGE >= 75 ~ ">=75"
+  )) %>% formatters::with_label("Age Group, years")) %>%
+  formatters::var_relabel(AGE = "Age, years")
+
 # cardinal 2
 stack2 <- new_stack(
-  new_random_cdisc_data_block,
-  new_cardinal02_block,
+  data = new_dat_block(data = c2data),
+  table = new_cardinal02_block(
+    arm_var = "ARM",
+    saffl_var = "SAFFL",
+    vars = c("SEX", "AGE", "AGEGR1", "RACE", "ETHNIC", "COUNTRY")
+  ),
   title = "Cardinal 02"
 )
 
@@ -79,11 +92,18 @@ stack4 <- new_stack(
 )
 
 # cardianal 05
-stack5 <- new_stack(
-  new_random_cdisc_data_block,
-  new_cardinal05_block,
-  title = "Cardinal 05"
-)
+# stack5 <- new_stack(
+#   data = new_random_cdisc_data_block(selected = "cadsl"),
+#   new_cardinal05_block(
+#     arm_var = "ARM",
+#     id_var = "USUBJID",
+#     saffl_var = "SAFFL",
+#     trtsdtm_var = "TRTSDTM",
+#     trtedtm_var = "TRTEDTM",
+#     u_trtdur = "days"
+#   ),
+#   title = "Cardinal 05"
+# )
 
 # cardinal 06
 stack6 <- new_stack(
@@ -531,6 +551,16 @@ stack38 <- new_stack(
 
 ui <- fluidPage(
   theme = bslib::bs_theme(5L),
+  tags$head(
+    tags$style(".block-loading{display: none!important;}"),
+    tags$script(
+      HTML("$(() => {
+           setTimeout(() => {
+             $('.btn-success').trigger('click');
+          }, 3000);
+      })")
+    )
+  ),
   div(
     class = "row",
     div(
@@ -549,8 +579,8 @@ ui <- fluidPage(
       generate_ui(stack4)
     ),
     div(
-      class = "col-md-6",
-      generate_ui(stack5)
+      class = "col-md-6"
+      #generate_ui(stack5)
     )
   ),
   div(
@@ -679,7 +709,7 @@ server <- function(...){
   generate_server(stack2)
   generate_server(stack3)
   generate_server(stack4)
-  generate_server(stack5)
+  #generate_server(stack5)
   generate_server(stack6)
   generate_server(stack7)
 

@@ -1,4 +1,12 @@
 #' FDA Table 4: Patient Disposition, Pooled Analyses
+#'
+#' @param id_var ARM.
+#' @param arm_var ARM.
+#' @param pop_vars Population variables.
+#' @param lbl_pop_vars Population labels.
+#' @param show_colcounts Display counts.
+#' @param purne_0 Prune zero rows.
+#'
 #' @import blockr cardinal rtables
 #' @export
 new_cardinal04_block <- function(

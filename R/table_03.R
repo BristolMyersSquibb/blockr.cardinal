@@ -1,4 +1,13 @@
 #' FDA Table 3: Patient Screening and Enrollment, Trials A and B
+#'
+#' @param id_var ARM.
+#' @param arm_var ARM.
+#' @param vars Variables.
+#' @param scrnfl_var Screen flag.
+#' @param scrnfailfl_var Screen fail flag.
+#' @param show_colcounts Display counts.
+#' @param purne_0 Prune zero rows.
+#'
 #' @import blockr cardinal rtables
 #' @export
 new_cardinal03_block <- function(
