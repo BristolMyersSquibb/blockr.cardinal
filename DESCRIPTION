@@ -1,10 +1,13 @@
 Package: blockr.cardinal
 Title: Create 'FDA' tables with Cardinal
 Version: 0.0.0.9000
-Authors@R:
-    c(
-      person("John", "Coene", "john@opifex.org", role = c("aut", "cre")),
-      person(Family = "Bristol Myers Squibb", role = c("cph", "fnd"))
+Authors@R: 
+    c(person(given = "John",
+             family = "Coene",
+             role = c("aut", "cre"),
+             email = "john@opifex.org"),
+      person(family = "Bristol Myers Squibb",
+           role = c("cph", "fnd"))
     )
 Description: Create 'FDA' compliant tables with the cardinal R package using 'blockr'.
 License: file LICENSE
@@ -20,4 +23,5 @@ Suggests:
   gt,
   random.cdisc.data
 Remotes:
+  blockr-org/blockr,
   pharmaverse/cardinal
