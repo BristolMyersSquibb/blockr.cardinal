@@ -4,7 +4,7 @@ server_output.rtables_block <- function (x, result, output) {
   shiny::renderUI({
     txt <- utils::capture.output(print(result()$rtables))
     txt <- paste0(txt, collapse = "\n")
-    
+
     if(length(result()$gt) > 0){
       shiny::tabsetPanel(
         shiny::tabPanel(
@@ -39,7 +39,7 @@ server_output.rtables_block <- function (x, result, output) {
           rtables::as_html(result()$rtables, class_table = "table")
         )
       )
-      
+
     }
   })
 }
