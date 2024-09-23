@@ -39,7 +39,6 @@ server_output.rtables_block <- function (x, result, output) {
           rtables::as_html(result()$rtables, class_table = "table")
         )
       )
-
     }
   })
 }

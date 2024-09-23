@@ -13,7 +13,7 @@ new_cardinal09_block <- function(
   fields <- list(
     id_var = new_select_field(id_var, all_cols, title = "ID"),
     arm_var = new_select_field(arm_var, all_cols, title = "ARM"),
-    saffl_var = new_select_field(saffl_var, all_cols, title = "ARM"),
+    saffl_var = new_select_field(saffl_var, all_cols, title = "SAFFL"),
     pref_var = new_select_field(pref_var, all_cols, title = "Pref"),
     show_colcounts = new_switch_field(show_colcounts, title = "Show column counts")
   )
